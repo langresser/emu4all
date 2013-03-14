@@ -33,8 +33,7 @@
 #define kMangoAppKey @"0a6d56311af3494f8f3ce4e423269ab2"
 #endif
 
-
-
+#define USE_LOGGER
 
 //#define EMU_MD
 #define EMU_GBA

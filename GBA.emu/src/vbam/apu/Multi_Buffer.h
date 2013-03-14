@@ -126,6 +126,7 @@ public:
 
 	class Stereo_Mixer {
 	public:
+        Stereo_Mixer() {};
 		constexpr Stereo_Mixer(Tracked_Blip_Buffer *cen, Tracked_Blip_Buffer *left, Tracked_Blip_Buffer *right, blargg_long samples_read):
 			bufs{left, right, cen}, samples_read(samples_read) { }
 

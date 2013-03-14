@@ -18,7 +18,7 @@ struct Projector
 		aspectRatio = 0;
 	Matrix4x4<GC> mat, matInv;
 
-	constexpr Projector() { }
+	Projector() { }
 
 	GC wHalf() const
 	{

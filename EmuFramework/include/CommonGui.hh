@@ -33,8 +33,6 @@
 #include <TextEntry.hh>
 #include <libgen.h>
 
-#include <meta.h>
-
 bool isMenuDismissKey(const Input::Event &e);
 void startGameFromMenu();
 bool touchControlsApplicable();

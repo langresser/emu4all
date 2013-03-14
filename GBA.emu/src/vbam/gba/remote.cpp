@@ -6,14 +6,8 @@
 # include <unistd.h>
 # include <sys/socket.h>
 # include <netdb.h>
-# ifdef HAVE_NETINET_IN_H
 #  include <netinet/in.h>
-# endif // HAVE_NETINET_IN_H
-# ifdef HAVE_ARPA_INET_H
 #  include <arpa/inet.h>
-# else // ! HAVE_ARPA_INET_H
-#  define socklen_t int
-# endif // ! HAVE_ARPA_INET_H
 # define SOCKET int
 #else // _WIN32
 # include <winsock.h>
@@ -241,22 +235,22 @@ void remotePutPacket(const char *packet)
 }
 
 #define debuggerReadMemory(addr) \
-  (*(u32*)&map[(addr)>>24].address[(addr) & map[(addr)>>24].mask])
+(*(u32*)&(gGba.cpu.map)[(addr)>>24].address[(addr) & (gGba.cpu.map)[(addr)>>24].mask])
 
 #define debuggerReadHalfWord(addr) \
-  (*(u16*)&map[(addr)>>24].address[(addr) & map[(addr)>>24].mask])
+(*(u16*)&(gGba.cpu.map)[(addr)>>24].address[(addr) & (gGba.cpu.map)[(addr)>>24].mask])
 
 #define debuggerReadByte(addr) \
-  map[(addr)>>24].address[(addr) & map[(addr)>>24].mask]
+(gGba.cpu.map)[(addr)>>24].address[(addr) & (gGba.cpu.map)[(addr)>>24].mask]
 
 #define debuggerWriteMemory(addr, value) \
-  *(u32*)&map[(addr)>>24].address[(addr) & map[(addr)>>24].mask] = (value)
+*(u32*)&(gGba.cpu.map)[(addr)>>24].address[(addr) & (gGba.cpu.map)[(addr)>>24].mask] = (value)
 
 #define debuggerWriteHalfWord(addr, value) \
-  *(u16*)&map[(addr)>>24].address[(addr) & map[(addr)>>24].mask] = (value)
+*(u16*)&(gGba.cpu.map)[(addr)>>24].address[(addr) & (gGba.cpu.map)[(addr)>>24].mask] = (value)
 
 #define debuggerWriteByte(addr, value) \
-  map[(addr)>>24].address[(addr) & map[(addr)>>24].mask] = (value)
+(gGba.cpu.map)[(addr)>>24].address[(addr) & (gGba.cpu.map)[(addr)>>24].mask] = (value)
 
 void remoteOutput(const char *s, u32 addr)
 {
@@ -300,7 +294,7 @@ void remoteSendStatus()
   char *s = buffer;
   s += 3;
   for(int i = 0; i < 15; i++) {
-    u32 v = reg[i].I;
+    u32 v = gGba.cpu.reg[i].I;
     sprintf(s, "%02x:%02x%02x%02x%02x;",i,
             (v & 255),
             (v >> 8) & 255,
@@ -308,14 +302,14 @@ void remoteSendStatus()
             (v >> 24) & 255);
     s += 12;
   }
-  u32 v = armNextPC;
+  u32 v = gGba.cpu.armNextPC;
   sprintf(s, "0f:%02x%02x%02x%02x;", (v & 255),
           (v >> 8) & 255,
           (v >> 16) & 255,
           (v >> 24) & 255);
   s += 12;
   CPUUpdateCPSR();
-  v = reg[16].I;
+  v = gGba.cpu.reg[16].I;
   sprintf(s, "19:%02x%02x%02x%02x;", (v & 255),
           (v >> 8) & 255,
           (v >> 16) & 255,
@@ -414,7 +408,7 @@ void remoteStepOverRange(char *p)
     CPULoop(1);
     if(debugger)
       break;
-  } while(armNextPC >= address && armNextPC < final);
+  } while(gGba.cpu.armNextPC >= address && gGba.cpu.armNextPC < final);
 
   remoteResumed = false;
 
@@ -470,13 +464,13 @@ void remoteReadRegisters(char *p)
   int i;
   // regular registers
   for(i = 0; i < 15; i++) {
-    u32 v = reg[i].I;
+    u32 v = gGba.cpu.reg[i].I;
     sprintf(s, "%02x%02x%02x%02x",  v & 255, (v >> 8) & 255,
             (v >> 16) & 255, (v >> 24) & 255);
     s += 8;
   }
   // PC
-  u32 pc = armNextPC;
+  u32 pc = gGba.cpu.armNextPC;
   sprintf(s, "%02x%02x%02x%02x", pc & 255, (pc >> 8) & 255,
           (pc >> 16) & 255, (pc >> 24) & 255);
   s += 8;
@@ -492,7 +486,7 @@ void remoteReadRegisters(char *p)
   s += 8;
   // CPSR
   CPUUpdateCPSR();
-  u32 v = reg[16].I;
+  u32 v = gGba.cpu.reg[16].I;
   sprintf(s, "%02x%02x%02x%02x",  v & 255, (v >> 8) & 255,
           (v >> 16) & 255, (v >> 24) & 255);
   s += 8;
@@ -535,13 +529,13 @@ void remoteWriteRegister(char *p)
   v = data[0] | (data[1] << 8) | (data[2] << 16) | (data[3] << 24);
 
   //  printf("Write register %d=%08x\n", r, v);
-  reg[r].I = v;
+  gGba.cpu.reg[r].I = v;
   if(r == 15) {
-    armNextPC = v;
-    if(armState)
-      reg[15].I = v + 4;
+    gGba.cpu.armNextPC = v;
+    if(gGba.cpu.armState)
+      gGba.cpu.reg[15].I = v + 4;
     else
-      reg[15].I = v + 2;
+      gGba.cpu.reg[15].I = v + 2;
   }
   remotePutPacket("OK");
 }

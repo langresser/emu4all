@@ -18,7 +18,7 @@
 #include <util/gui/BaseMenuView.hh>
 #include "EmuSystem.hh"
 #include <StateSlotView.hh>
-#include <meta.h>
+
 #ifdef CONFIG_BLUETOOTH
 	#include <bluetooth/sys.hh>
 	#include <bluetooth/BluetoothInputDevScanner.hh>

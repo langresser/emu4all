@@ -1,3 +1,4 @@
+#ifndef EMU_GBA
 #include <Cheats.hh>
 #include <MsgPopup.hh>
 #include <TextEntry.hh>
@@ -72,3 +73,4 @@ void refreshCheatViews()
 	cheatsMenu.init(0);
 	cheatsMenu.place();
 }
+#endif

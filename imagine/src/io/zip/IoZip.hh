@@ -19,7 +19,7 @@
 
 #include <mem/interface.h>
 #include <io/Io.hh>
-#include <unzip.h>
+#include "unzip.h"
 
 class IoZip : public Io
 {

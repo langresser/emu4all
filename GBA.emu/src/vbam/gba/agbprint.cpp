@@ -7,10 +7,10 @@
 #include "../System.h"
 
 #define debuggerWriteHalfWord(addr, value) \
-  WRITE16LE((u16*)&map[(addr)>>24].address[(addr) & map[(addr)>>24].mask], (value))
+    WRITE16LE((u16*)&(gGba.cpu.map)[(addr)>>24].address[(addr) & (gGba.cpu.map)[(addr)>>24].mask], (value))
 
 #define debuggerReadHalfWord(addr) \
-  READ16LE(((u16*)&map[(addr)>>24].address[(addr) & map[(addr)>>24].mask]))
+    READ16LE(((u16*)&(gGba.cpu.map)[(addr)>>24].address[(addr) & (gGba.cpu.map)[(addr)>>24].mask]))
 
 static bool agbPrintEnabled = false;
 static bool agbPrintProtect = false;
@@ -63,7 +63,7 @@ void agbPrintFlush()
     return;
   }
 
-  u8 *data = &gMem.rom[address];
+  u8 *data = &gGba.mem.rom[address];
 
   while(get != put) {
     char c = data[get++];

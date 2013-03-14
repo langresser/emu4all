@@ -16,13 +16,13 @@ struct Opcodes {
 };
 
 #define debuggerReadMemory(addr) \
-  READ32LE(((u32*)&map[(addr)>>24].address[(addr) & map[(addr)>>24].mask]))
+    READ32LE(((u32*)&(gGba.cpu.map)[(addr)>>24].address[(addr) & (gGba.cpu.map)[(addr)>>24].mask]))
 
 #define debuggerReadHalfWord(addr) \
-  READ16LE(((u16*)&map[(addr)>>24].address[(addr) & map[(addr)>>24].mask]))
+    READ16LE(((u16*)&(gGba.cpu.map)[(addr)>>24].address[(addr) & (gGba.cpu.map)[(addr)>>24].mask]))
 
 #define debuggerReadByte(addr) \
-  map[(addr)>>24].address[(addr) & map[(addr)>>24].mask]
+    (gGba.cpu.map)[(addr)>>24].address[(addr) & (gGba.cpu.map)[(addr)>>24].mask]
 
 const char hdig[] = "0123456789abcdef";
 

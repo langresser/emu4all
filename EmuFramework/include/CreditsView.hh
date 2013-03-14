@@ -18,7 +18,6 @@
 #include <gui/View.hh>
 #include <util/gui/ViewAnimation.hh>
 #include <config/version.h>
-#include <meta.h>
 
 #ifdef ENV_NOTE
 	#define PLATFORM_INFO_STR ENV_NOTE " (" CONFIG_ARCH_STR ")"

@@ -8,7 +8,7 @@
 #include "../NLS.h"
 
 #define elfReadMemory(addr) \
-  READ32LE((&map[(addr)>>24].address[(addr) & map[(addr)>>24].mask]))
+    READ32LE((&(gGba.cpu.map)[(addr)>>24].address[(addr) & (gGba.cpu.map)[(addr)>>24].mask]))
 
 #define DW_TAG_array_type             0x01
 #define DW_TAG_enumeration_type       0x04
@@ -628,7 +628,7 @@ void elfPrintCallChain(u32 address)
   reg_pair regs[15];
   reg_pair newRegs[15];
 
-  memcpy(&regs[0], &reg[0], sizeof(reg_pair) * 15);
+  memcpy(&regs[0], &gGba.cpu.reg[0], sizeof(reg_pair) * 15);
 
   while(count < 20) {
     const char *addr = elfGetAddressSymbol(address);
@@ -717,7 +717,7 @@ u32 elfDecodeLocation(Function *f, ELFBlock *o, LocationType *type, u32 base)
     case DW_OP_reg13:
     case DW_OP_reg14:
     case DW_OP_reg15:
-      framebase = reg[*b->data-0x50].I;
+      framebase = gGba.cpu.reg[*b->data-0x50].I;
       break;
     default:
       fprintf(stderr, "Unknown frameBase %02x\n", *b->data);
@@ -2633,7 +2633,7 @@ bool elfReadProgram(ELFHeader *eh, u8 *data, int& size, bool parseDebug)
     if(cpuIsMultiBoot) {
       if(READ32LE(&ph->paddr) >= 0x2000000 &&
          READ32LE(&ph->paddr) <= 0x203ffff) {
-        memcpy(&workRAM[READ32LE(&ph->paddr) & 0x3ffff],
+        memcpy(&gGba.mem.workRAM[READ32LE(&ph->paddr) & 0x3ffff],
                data + READ32LE(&ph->offset),
                READ32LE(&ph->filesz));
         size += READ32LE(&ph->filesz);
@@ -2641,7 +2641,7 @@ bool elfReadProgram(ELFHeader *eh, u8 *data, int& size, bool parseDebug)
     } else {
       if(READ32LE(&ph->paddr) >= 0x8000000 &&
          READ32LE(&ph->paddr) <= 0x9ffffff) {
-        memcpy(&rom[READ32LE(&ph->paddr) & 0x1ffffff],
+        memcpy(&gGba.mem.rom[READ32LE(&ph->paddr) & 0x1ffffff],
                data + READ32LE(&ph->offset),
                READ32LE(&ph->filesz));
         size += READ32LE(&ph->filesz);
@@ -2683,7 +2683,7 @@ bool elfReadProgram(ELFHeader *eh, u8 *data, int& size, bool parseDebug)
       if(cpuIsMultiBoot) {
         if(READ32LE(&sh[i]->addr) >= 0x2000000 &&
            READ32LE(&sh[i]->addr) <= 0x203ffff) {
-          memcpy(&workRAM[READ32LE(&sh[i]->addr) & 0x3ffff], data +
+          memcpy(&gGba.mem.workRAM[READ32LE(&sh[i]->addr) & 0x3ffff], data +
                  READ32LE(&sh[i]->offset),
                  READ32LE(&sh[i]->size));
                    size += READ32LE(&sh[i]->size);
@@ -2691,7 +2691,7 @@ bool elfReadProgram(ELFHeader *eh, u8 *data, int& size, bool parseDebug)
       } else {
         if(READ32LE(&sh[i]->addr) >= 0x8000000 &&
            READ32LE(&sh[i]->addr) <= 0x9ffffff) {
-          memcpy(&rom[READ32LE(&sh[i]->addr) & 0x1ffffff],
+          memcpy(&gGba.mem.rom[READ32LE(&sh[i]->addr) & 0x1ffffff],
                  data + READ32LE(&sh[i]->offset),
                  READ32LE(&sh[i]->size));
           size += READ32LE(&sh[i]->size);

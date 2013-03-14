@@ -9,7 +9,6 @@
 #include <fs/sys.hh>
 #include <util/time/sys.hh>
 #include <base/common/funcs.h>
-#include <meta.h>
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
@@ -724,7 +723,7 @@ static uint iOSOrientationToGfx(UIDeviceOrientation orientation)
 	#endif
 	glFinish();
 	[glView destroyFramebuffer];
-	unlink("/private/var/mobile/Library/Caches/" CONFIG_APP_ID "/com.apple.opengl/shaders.maps");
+//	unlink("/private/var/mobile/Library/Caches/" CONFIG_APP_ID "/com.apple.opengl/shaders.maps");
 	logMsg("entered background");
 }
 

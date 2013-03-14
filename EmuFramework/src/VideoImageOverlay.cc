@@ -15,7 +15,6 @@
 
 #include <VideoImageOverlay.hh>
 #include <EmuSystem.hh>
-#include <meta.h>
 
 #define CONV_COL(x) 0, x
 static ATTRS(aligned (2)) uchar scanlinePixmapBuff[] = { CONV_COL(0x00), CONV_COL(0xff) };
