@@ -1,0 +1,21 @@
+//
+// Prefix header for all source files of the 'libGBA' target in the 'libGBA' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
+
+
+// GBA.emu
+#define C_CORE
+#define FINAL_VERSION
+#define HAVE_ZLIB_H
+#define NO_PNG
+#define NO_DEBUGGER
+#define BLIP_BUFFER_FAST 1
+#define SysDecimal float
+#define NO_LINK
+
+
+#define EMU_GBA

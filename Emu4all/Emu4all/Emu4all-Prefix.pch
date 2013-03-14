@@ -1,0 +1,40 @@
+//
+// Prefix header for all source files of the 'emu_all' target in the 'emu_all' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <DianJinOfferPlatform/DianJinOfferPlatform.h>
+    #import <DianJinOfferPlatform/DianJinOfferBanner.h>
+    #import <DianJinOfferPlatform/DianJinBannerSubViewProperty.h>
+    #import <DianJinOfferPlatform/DianJinTransitionParam.h>
+    #import <DianJinOfferPlatform/DianJinOfferPlatformProtocol.h>
+    #import "UMFeedback.h"
+    #import "MobClick.h"
+#endif
+
+// Imagine
+#import "config.h"
+
+//#define USE_IOS_JOYSTICK
+
+#ifdef GBA_SRW
+#define JOYSTICK_GBA
+#define kUMengAppKey @"50a5517a52701506f8000017"
+#define kDianjinAppKey 12932
+#define kDianjinAppSecrect @"b46da6977eaf1861438e8cfd799a4fce"
+#define kMangoAppKey @"0a6d56311af3494f8f3ce4e423269ab2"
+#endif
+
+
+
+
+//#define EMU_MD
+#define EMU_GBA

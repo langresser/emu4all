@@ -1,0 +1,19 @@
+//
+// Prefix header for all source files of the 'libMD' target in the 'libMD' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
+
+
+// MD.emu
+#define LSB_FIRST
+#define NO_SCD
+#define NO_SYSTEM_PICO
+#define SUPPORT_16BPP_RENDER
+#define SysDDec float
+#define SysLDDec float
+
+
+#define EMU_MD
