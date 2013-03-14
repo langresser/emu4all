@@ -186,35 +186,20 @@ int EmuSystem::setupFrameSkip(uint optionVal, Gfx::FrameTimeBase frameTime)
 	return skip;*/
 }
 
-void EmuSystem::setupGamePaths(const char *filePath)
+void EmuSystem::setupGamePaths(const char *filePath, bool searchInDocument)
 {
-	{
-		// find the realpath the dirname portion separately in case the file is a symlink
-		FsSys::cPath dirNameTemp;
-		string_copy(dirNameTemp, filePath);
-		strcpy(gamePath, dirname(dirNameTemp));
-		char realPath[PATH_MAX];
-		if(!realpath(gamePath, realPath))
-		{
-			gamePath[0] = 0;
-			logErr("error in realpath()");
-			return;
-		}
-		strcpy(gamePath, realPath); // destination is always large enough
-		logMsg("set game directory: %s", gamePath);
-		#ifdef CONFIG_BASE_IOS_SETUID
-			fixFilePermissions(gamePath);
-		#endif
-	}
-
+    if (searchInDocument) {
+        snprintf(fullGamePath, sizeof(fullGamePath), "%s/%s", Base::documentsPath(), filePath);
+        
+    } else {
+        snprintf(fullGamePath, sizeof(fullGamePath), "%s/%s", Base::applicationPath(), filePath);
+    }
+    
 	{
 		FsSys::cPath baseNameTemp;
 		string_copy(baseNameTemp, filePath);
 		string_copy(gameName, basename(baseNameTemp));
-
-		string_printf(fullGamePath, "%s/%s", gamePath, gameName);
-		logMsg("set full game path: %s", fullGamePath);
-
+        
 		// If gameName has an extension, truncate it
 		auto dotPos = strrchr(gameName, '.');
 		if(dotPos)
@@ -222,3 +207,4 @@ void EmuSystem::setupGamePaths(const char *filePath)
 		logMsg("set game name: %s", gameName);
 	}
 }
+

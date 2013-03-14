@@ -168,6 +168,7 @@ static CallbackRef *callbackAfterDelaySec(CallbackDelegate callback, int s)
 extern const char *appPath;
 #if defined (CONFIG_BASE_ANDROID) || defined(CONFIG_BASE_IOS)
 	const char *documentsPath();
+    const char* applicationPath();
 #else
 	static const char *documentsPath() { return appPath; }
 #endif

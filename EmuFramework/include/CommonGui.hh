@@ -386,7 +386,7 @@ void startGameFromMenu()
 	}
 }
 
-static void restoreMenuFromGame()
+void restoreMenuFromGame()
 {
 	menuViewIsActive = 1;
 	Base::setIdleDisplayPowerSave(

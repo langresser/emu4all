@@ -27,6 +27,7 @@
 
 bool Png::supportUncommonConv = 0;
 
+#define PNG_ERROR_TEXT_SUPPORTED
 #ifndef PNG_ERROR_TEXT_SUPPORTED
 
 CLINK void PNGAPI EVISIBLE png_error(png_structp png_ptr, png_const_charp error_message)
@@ -43,6 +44,7 @@ CLINK void PNGAPI EVISIBLE png_chunk_error(png_structp png_ptr, png_const_charp 
 
 #endif
 
+#define PNG_WARNINGS_SUPPORTED
 #ifndef PNG_WARNINGS_SUPPORTED
 
 CLINK void PNGAPI EVISIBLE png_warning(png_structp png_ptr, png_const_charp warning_message)

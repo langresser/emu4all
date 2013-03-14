@@ -30,12 +30,6 @@
 		8517F07716F1F7E70079D232 /* VideoImageOverlay.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F06316F1F7E70079D232 /* VideoImageOverlay.cc */; };
 		8517F3F916F1F7FE0079D232 /* coreaudio.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F1A216F1F7FD0079D232 /* coreaudio.cc */; };
 		8517F42716F1F7FE0079D232 /* iphone.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8517F1F016F1F7FD0079D232 /* iphone.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		8517F43316F1F7FE0079D232 /* BluetoothAdapter.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F20D16F1F7FD0079D232 /* BluetoothAdapter.cc */; };
-		8517F43416F1F7FE0079D232 /* BluetoothInputDevScanner.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F20F16F1F7FD0079D232 /* BluetoothInputDevScanner.cc */; };
-		8517F43916F1F7FE0079D232 /* BtstackBluetoothAdapter.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F21616F1F7FD0079D232 /* BtstackBluetoothAdapter.cc */; };
-		8517F43A16F1F7FE0079D232 /* IControlPad.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F21816F1F7FD0079D232 /* IControlPad.cc */; };
-		8517F43E16F1F7FE0079D232 /* freetype.mk in Resources */ = {isa = PBXBuildFile; fileRef = 8517F22916F1F7FD0079D232 /* freetype.mk */; };
-		8517F43F16F1F7FE0079D232 /* FreetypeFontData.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F22A16F1F7FD0079D232 /* FreetypeFontData.cc */; };
 		8517F44016F1F7FE0079D232 /* build.mk in Resources */ = {isa = PBXBuildFile; fileRef = 8517F22E16F1F7FD0079D232 /* build.mk */; };
 		8517F44116F1F7FE0079D232 /* reader.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F22F16F1F7FD0079D232 /* reader.cc */; };
 		8517F44316F1F7FE0079D232 /* Fs.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F23416F1F7FD0079D232 /* Fs.cc */; };
@@ -43,8 +37,6 @@
 		8517F44516F1F7FE0079D232 /* FsPosix.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F23816F1F7FD0079D232 /* FsPosix.cc */; };
 		8517F44C16F1F7FE0079D232 /* opengl.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F25E16F1F7FD0079D232 /* opengl.cc */; };
 		8517F44E16F1F7FE0079D232 /* AlertView.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F26A16F1F7FD0079D232 /* AlertView.cc */; };
-		8517F44F16F1F7FE0079D232 /* AlertView.mk in Resources */ = {isa = PBXBuildFile; fileRef = 8517F26C16F1F7FD0079D232 /* AlertView.mk */; };
-		8517F45016F1F7FE0079D232 /* build.mk in Resources */ = {isa = PBXBuildFile; fileRef = 8517F26D16F1F7FD0079D232 /* build.mk */; };
 		8517F45116F1F7FE0079D232 /* build.mk in Resources */ = {isa = PBXBuildFile; fileRef = 8517F26F16F1F7FD0079D232 /* build.mk */; };
 		8517F45216F1F7FE0079D232 /* FSPicker.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8517F27016F1F7FD0079D232 /* FSPicker.cc */; };
 		8517F45316F1F7FE0079D232 /* build.mk in Resources */ = {isa = PBXBuildFile; fileRef = 8517F27316F1F7FD0079D232 /* build.mk */; };
@@ -230,7 +222,6 @@
 		8517F5DD16F1F8DC0079D232 /* dianjin_offer_top_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8517F57A16F1F8DB0079D232 /* dianjin_offer_top_background@2x.png */; };
 		8517F5DE16F1F8DC0079D232 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8517F57B16F1F8DB0079D232 /* libMobClickLibrary.a */; };
 		8517F5DF16F1F8DC0079D232 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8517F57C16F1F8DB0079D232 /* libUMFeedback.a */; };
-		8517F5E016F1F8DC0079D232 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8517F57E16F1F8DB0079D232 /* umFeedback.bundle */; };
 		853BDEA116F0539400F4A001 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DB1D0416EBD21000B8D346 /* SystemConfiguration.framework */; };
 		853BDEA216F0539400F4A001 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DB1D0216EBD20700B8D346 /* MobileCoreServices.framework */; };
 		853BDEA316F0539400F4A001 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DB1D0016EBD1FF00B8D346 /* CoreTelephony.framework */; };
@@ -342,6 +333,7 @@
 		853BDF1116F0539400F4A001 /* dianjin_offer_top_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 17DB1A6C16EA4DC500B8D346 /* dianjin_offer_top_background.png */; };
 		853BDF1216F0539400F4A001 /* dianjin_offer_top_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17DB1A6D16EA4DC500B8D346 /* dianjin_offer_top_background@2x.png */; };
 		853BDF1316F0539400F4A001 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17DB1A7116EA4DC500B8D346 /* umFeedback.bundle */; };
+		85E97EF816F209F800216073 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 85E97EF716F209F800216073 /* umFeedback.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -372,6 +364,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 852A78D416F19A48001BEA56;
 			remoteInfo = libMD;
+		};
+		8517F5FD16F205260079D232 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 852A77EF16F18D06001BEA56 /* libGBA.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 852A77DD16F18CF1001BEA56;
+			remoteInfo = libGBA;
 		};
 		852A77F616F18D07001BEA56 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -586,13 +585,9 @@
 		8517F1F116F1F7FD0079D232 /* MainApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainApp.h; sourceTree = "<group>"; };
 		8517F1F216F1F7FD0079D232 /* private.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = private.hh; sourceTree = "<group>"; };
 		8517F1F316F1F7FD0079D232 /* private.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = private.hh; sourceTree = "<group>"; };
-		8517F20D16F1F7FD0079D232 /* BluetoothAdapter.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BluetoothAdapter.cc; sourceTree = "<group>"; };
 		8517F20E16F1F7FD0079D232 /* BluetoothAdapter.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BluetoothAdapter.hh; sourceTree = "<group>"; };
-		8517F20F16F1F7FD0079D232 /* BluetoothInputDevScanner.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BluetoothInputDevScanner.cc; sourceTree = "<group>"; };
 		8517F21016F1F7FD0079D232 /* BluetoothInputDevScanner.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BluetoothInputDevScanner.hh; sourceTree = "<group>"; };
-		8517F21616F1F7FD0079D232 /* BtstackBluetoothAdapter.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BtstackBluetoothAdapter.cc; sourceTree = "<group>"; };
 		8517F21716F1F7FD0079D232 /* BtstackBluetoothAdapter.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BtstackBluetoothAdapter.hh; sourceTree = "<group>"; };
-		8517F21816F1F7FD0079D232 /* IControlPad.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IControlPad.cc; sourceTree = "<group>"; };
 		8517F21916F1F7FD0079D232 /* IControlPad.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IControlPad.hh; sourceTree = "<group>"; };
 		8517F21A16F1F7FD0079D232 /* sys.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sys.hh; sourceTree = "<group>"; };
 		8517F21C16F1F7FD0079D232 /* utils.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utils.hh; sourceTree = "<group>"; };
@@ -601,8 +596,6 @@
 		8517F22416F1F7FD0079D232 /* imagineTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imagineTypes.h; sourceTree = "<group>"; };
 		8517F22516F1F7FD0079D232 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		8517F22816F1F7FD0079D232 /* FontData.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FontData.hh; sourceTree = "<group>"; };
-		8517F22916F1F7FD0079D232 /* freetype.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = freetype.mk; sourceTree = "<group>"; };
-		8517F22A16F1F7FD0079D232 /* FreetypeFontData.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreetypeFontData.cc; sourceTree = "<group>"; };
 		8517F22B16F1F7FD0079D232 /* FreetypeFontData.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FreetypeFontData.hh; sourceTree = "<group>"; };
 		8517F22E16F1F7FD0079D232 /* build.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.mk; sourceTree = "<group>"; };
 		8517F22F16F1F7FD0079D232 /* reader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = reader.cc; sourceTree = "<group>"; };
@@ -646,8 +639,6 @@
 		8517F26816F1F7FD0079D232 /* viewport.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = viewport.hh; sourceTree = "<group>"; };
 		8517F26A16F1F7FD0079D232 /* AlertView.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlertView.cc; sourceTree = "<group>"; };
 		8517F26B16F1F7FD0079D232 /* AlertView.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AlertView.hh; sourceTree = "<group>"; };
-		8517F26C16F1F7FD0079D232 /* AlertView.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AlertView.mk; sourceTree = "<group>"; };
-		8517F26D16F1F7FD0079D232 /* build.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.mk; sourceTree = "<group>"; };
 		8517F26F16F1F7FD0079D232 /* build.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.mk; sourceTree = "<group>"; };
 		8517F27016F1F7FD0079D232 /* FSPicker.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FSPicker.cc; sourceTree = "<group>"; };
 		8517F27116F1F7FD0079D232 /* FSPicker.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FSPicker.hh; sourceTree = "<group>"; };
@@ -941,7 +932,6 @@
 		8517F57B16F1F8DB0079D232 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		8517F57C16F1F8DB0079D232 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
 		8517F57D16F1F8DB0079D232 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
-		8517F57E16F1F8DB0079D232 /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
 		8517F57F16F1F8DB0079D232 /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
 		8517F5E116F1F9C10079D232 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		8517F5F516F200C40079D232 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -950,6 +940,7 @@
 		852A77EF16F18D06001BEA56 /* libGBA.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libGBA.xcodeproj; path = ../GBA.emu/libGBA.xcodeproj; sourceTree = "<group>"; };
 		852A78E616F19A5B001BEA56 /* libMD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libMD.xcodeproj; path = ../MD.emu/libMD.xcodeproj; sourceTree = "<group>"; };
 		853BDF2116F0539400F4A001 /* gba_srw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gba_srw.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85E97EF716F209F800216073 /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1357,13 +1348,9 @@
 		8517F20816F1F7FD0079D232 /* bluetooth */ = {
 			isa = PBXGroup;
 			children = (
-				8517F20D16F1F7FD0079D232 /* BluetoothAdapter.cc */,
 				8517F20E16F1F7FD0079D232 /* BluetoothAdapter.hh */,
-				8517F20F16F1F7FD0079D232 /* BluetoothInputDevScanner.cc */,
 				8517F21016F1F7FD0079D232 /* BluetoothInputDevScanner.hh */,
-				8517F21616F1F7FD0079D232 /* BtstackBluetoothAdapter.cc */,
 				8517F21716F1F7FD0079D232 /* BtstackBluetoothAdapter.hh */,
-				8517F21816F1F7FD0079D232 /* IControlPad.cc */,
 				8517F21916F1F7FD0079D232 /* IControlPad.hh */,
 				8517F21A16F1F7FD0079D232 /* sys.hh */,
 				8517F21C16F1F7FD0079D232 /* utils.hh */,
@@ -1396,8 +1383,6 @@
 			isa = PBXGroup;
 			children = (
 				8517F22816F1F7FD0079D232 /* FontData.hh */,
-				8517F22916F1F7FD0079D232 /* freetype.mk */,
-				8517F22A16F1F7FD0079D232 /* FreetypeFontData.cc */,
 				8517F22B16F1F7FD0079D232 /* FreetypeFontData.hh */,
 			);
 			path = font;
@@ -1508,8 +1493,6 @@
 			children = (
 				8517F26A16F1F7FD0079D232 /* AlertView.cc */,
 				8517F26B16F1F7FD0079D232 /* AlertView.hh */,
-				8517F26C16F1F7FD0079D232 /* AlertView.mk */,
-				8517F26D16F1F7FD0079D232 /* build.mk */,
 				8517F26E16F1F7FD0079D232 /* FSPicker */,
 				8517F27216F1F7FD0079D232 /* GuiTable1D */,
 				8517F27616F1F7FD0079D232 /* MenuItem */,
@@ -2086,12 +2069,12 @@
 		8517F51816F1F8DB0079D232 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				85E97EF716F209F800216073 /* umFeedback.bundle */,
 				8517F51916F1F8DB0079D232 /* DianJinFramework */,
 				8517F51D16F1F8DB0079D232 /* DianJinOfferPlatformResources */,
 				8517F57B16F1F8DB0079D232 /* libMobClickLibrary.a */,
 				8517F57C16F1F8DB0079D232 /* libUMFeedback.a */,
 				8517F57D16F1F8DB0079D232 /* MobClick.h */,
-				8517F57E16F1F8DB0079D232 /* umFeedback.bundle */,
 				8517F57F16F1F8DB0079D232 /* UMFeedback.h */,
 			);
 			path = libs;
@@ -2261,6 +2244,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8517F5FE16F205260079D232 /* PBXTargetDependency */,
 				8513C2B616F1B05A0085F42E /* PBXTargetDependency */,
 				853BDE1816F0539400F4A001 /* PBXTargetDependency */,
 				853BDE1A16F0539400F4A001 /* PBXTargetDependency */,
@@ -2454,11 +2438,8 @@
 				853BDF1116F0539400F4A001 /* dianjin_offer_top_background.png in Resources */,
 				853BDF1216F0539400F4A001 /* dianjin_offer_top_background@2x.png in Resources */,
 				853BDF1316F0539400F4A001 /* umFeedback.bundle in Resources */,
-				8517F43E16F1F7FE0079D232 /* freetype.mk in Resources */,
 				8517F44016F1F7FE0079D232 /* build.mk in Resources */,
 				8517F44416F1F7FE0079D232 /* build.mk in Resources */,
-				8517F44F16F1F7FE0079D232 /* AlertView.mk in Resources */,
-				8517F45016F1F7FE0079D232 /* build.mk in Resources */,
 				8517F45116F1F7FE0079D232 /* build.mk in Resources */,
 				8517F45316F1F7FE0079D232 /* build.mk in Resources */,
 				8517F45516F1F7FE0079D232 /* build.mk in Resources */,
@@ -2599,7 +2580,7 @@
 				8517F5DB16F1F8DC0079D232 /* dianjin_offer_nav_background3@2x.png in Resources */,
 				8517F5DC16F1F8DC0079D232 /* dianjin_offer_top_background.png in Resources */,
 				8517F5DD16F1F8DC0079D232 /* dianjin_offer_top_background@2x.png in Resources */,
-				8517F5E016F1F8DC0079D232 /* umFeedback.bundle in Resources */,
+				85E97EF816F209F800216073 /* umFeedback.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2632,11 +2613,6 @@
 				8517F07716F1F7E70079D232 /* VideoImageOverlay.cc in Sources */,
 				8517F3F916F1F7FE0079D232 /* coreaudio.cc in Sources */,
 				8517F42716F1F7FE0079D232 /* iphone.mm in Sources */,
-				8517F43316F1F7FE0079D232 /* BluetoothAdapter.cc in Sources */,
-				8517F43416F1F7FE0079D232 /* BluetoothInputDevScanner.cc in Sources */,
-				8517F43916F1F7FE0079D232 /* BtstackBluetoothAdapter.cc in Sources */,
-				8517F43A16F1F7FE0079D232 /* IControlPad.cc in Sources */,
-				8517F43F16F1F7FE0079D232 /* FreetypeFontData.cc in Sources */,
 				8517F44116F1F7FE0079D232 /* reader.cc in Sources */,
 				8517F44316F1F7FE0079D232 /* Fs.cc in Sources */,
 				8517F44516F1F7FE0079D232 /* FsPosix.cc in Sources */,
@@ -2692,6 +2668,11 @@
 			isa = PBXTargetDependency;
 			name = libMD;
 			targetProxy = 8513C2B516F1B05A0085F42E /* PBXContainerItemProxy */;
+		};
+		8517F5FE16F205260079D232 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libGBA;
+			targetProxy = 8517F5FD16F205260079D232 /* PBXContainerItemProxy */;
 		};
 		853BDE1816F0539400F4A001 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

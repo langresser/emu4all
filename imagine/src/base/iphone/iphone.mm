@@ -53,6 +53,7 @@ namespace Input
 #ifdef CONFIG_INPUT_ICADE
 	#include "ICadeHelper.hh"
 #endif
+int openglViewIsInit = 0;
 
 namespace Base
 {
@@ -108,7 +109,6 @@ static UIViewController *viewCtrl;
 #endif
 
 static const int USE_DEPTH_BUFFER = 0;
-static int openglViewIsInit = 0;
 
 void cancelCallback(CallbackRef *ref)
 {
@@ -327,7 +327,7 @@ uint appState = APP_RUNNING;
 		return NO;
 	}
 	
-	Base::openglViewIsInit = 1;
+	openglViewIsInit = 1;
 	return YES;
 }
 
@@ -346,7 +346,7 @@ uint appState = APP_RUNNING;
 		depthRenderbuffer = 0;
 	}
 	
-	Base::openglViewIsInit = 0;
+	openglViewIsInit = 0;
 }
 
 - (void)dealloc
@@ -577,94 +577,79 @@ static uint iOSOrientationToGfx(UIDeviceOrientation orientation)
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	using namespace Base;
-	NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-	#ifndef NDEBUG
-	//logMsg("in didFinishLaunchingWithOptions(), UUID %s", [[[UIDevice currentDevice] uniqueIdentifier] cStringUsingEncoding: NSASCIIStringEncoding]);
-	logMsg("iOS version %s", [currSysVer cStringUsingEncoding: NSASCIIStringEncoding]);
-	#endif
+    using namespace Base;
 	mainApp = self;
-	
-	// unused for now since ARMv7 build now requires 4.3
-	/*NSString *reqSysVer = @"4.0";
-	if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending)
-	{
-		//logMsg("enabling iOS 4 features");
-		usingiOS4 = 1;
-	}*/
-	
-	/*if ([currSysVer compare:@"3.2" options:NSNumericSearch] != NSOrderedAscending)
-	{
-		logMsg("enabling iOS 3.2 external display features");
-		NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-		[center addObserver:self selector:@selector(screenDidConnect:) name:UIScreenDidConnectNotification object:nil];
-		[center addObserver:self selector:@selector(screenDidDisconnect:) name:UIScreenDidDisconnectNotification object:nil];
-		[center addObserver:self selector:@selector(screenModeDidChange:) name:UIScreenModeDidChangeNotification object:nil];
-	}*/
 	
 	// TODO: get real DPI if possible
 	// based on iPhone/iPod DPI of 163 (326 retina)
 	uint unscaledDPI = 163;
-	#if !defined(__ARM_ARCH_6K__) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)
-	if(isIPad)
+#if !defined(__ARM_ARCH_6K__) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)
+	if(isPad())
 	{
-		// based on iPad DPI of 132 (264 retina) 
+		// based on iPad DPI of 132 (264 retina)
 		unscaledDPI = 132;
-		
-		/*rotateView = preferedOrientation = iOSOrientationToGfx([[UIDevice currentDevice] orientation]);
-		logMsg("started in %s orientation", Gfx::orientationName(rotateView));
-		#ifdef CONFIG_INPUT
-			Gfx::configureInputForOrientation();
-		#endif*/
+		logMsg("running on iPad");
 	}
-	#endif
-
+#endif
+    
 	CGRect rect = [[UIScreen mainScreen] bounds];
 	mainWin.w = mainWin.rect.x2 = rect.size.width;
 	mainWin.h = mainWin.rect.y2 = rect.size.height;
 	Gfx::viewMMWidth_ = roundf((mainWin.w / (float)unscaledDPI) * 25.4);
 	Gfx::viewMMHeight_ = roundf((mainWin.h / (float)unscaledDPI) * 25.4);
 	logMsg("set screen MM size %dx%d", Gfx::viewMMWidth_, Gfx::viewMMHeight_);
-	currWin = mainWin;
-	// Create a full-screen window
-	devWindow = [[UIWindow alloc] initWithFrame:rect];
 	
-	#ifdef GREYSTRIPE
-	initGS(self);
-	#endif
-	
-	NSNotificationCenter *nCenter = [NSNotificationCenter defaultCenter];
-	[nCenter addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
-	//[nCenter addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-	//[nCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-	
-	// Create the OpenGL ES view and add it to the Window
-	glView = [[EAGLView alloc] initWithFrame:rect];
-	#ifdef CONFIG_INPUT_ICADE
-		iCade.init(glView);
-	#endif
+	doOrExit(onInit(0, nullptr)); // TODO: args
+    
+    window = [[UIWindow alloc]initWithFrame:rect];
+    emuGameVC = [[MDGameViewController alloc]initWithNibName:nil bundle:nil];
+    window.rootViewController = emuGameVC;
+    [window makeKeyAndVisible];
+    
 	Base::engineInit();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	Base::setAutoOrientation(1);
-
-	// view controller init
-	if(usingiOS4)
-	{
-		viewCtrl = [[ImagineUIViewController alloc] init];
-		viewCtrl.view = glView;
-		[glView release];
-		devWindow.rootViewController = viewCtrl;
-		[viewCtrl release];
-	}
-	else
-	{
-		[devWindow addSubview:glView];
-		[glView release];
-	}
-
-	[devWindow makeKeyAndVisible];
-	logMsg("exiting didFinishLaunchingWithOptions");
+    
+    [emuGameVC showGameList];
+    
+    [MobClick startWithAppkey:kUMengAppKey];
+    [[DianJinOfferPlatform defaultPlatform] setAppId:kDianjinAppKey andSetAppKey:kDianjinAppSecrect];
+	[[DianJinOfferPlatform defaultPlatform] setOfferViewColor:kDJBrownColor];
+    [UMFeedback checkWithAppkey:kUMengAppKey];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRecNewMsg:) name:UMFBCheckFinishedNotification object:nil];
 	return YES;
+}
+
+-(void)showGameList
+{
+    [emuGameVC showGameList];
+}
+
+-(void)showSettingPopup
+{
+    [emuGameVC showSettingPopup];
+}
+
+-(void)onRecNewMsg:(NSNotification*)notification
+{
+    NSArray * newReplies = [notification.userInfo objectForKey:@"newReplies"];
+    if (!newReplies) {
+        return;
+    }
+    
+    UIAlertView *alertView;
+    NSString *title = [NSString stringWithFormat:@"有%d条新回复", [newReplies count]];
+    NSMutableString *content = [NSMutableString string];
+    for (int i = 0; i < [newReplies count]; i++) {
+        NSString * dateTime = [[newReplies objectAtIndex:i] objectForKey:@"datetime"];
+        NSString *_content = [[newReplies objectAtIndex:i] objectForKey:@"content"];
+        [content appendString:[NSString stringWithFormat:@"%d: %@---%@\n", i+1, _content, dateTime]];
+    }
+    
+    alertView = [[UIAlertView alloc] initWithTitle:title message:content delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    ((UILabel *) [[alertView subviews] objectAtIndex:1]).textAlignment = NSTextAlignmentLeft ;
+    [alertView show];
+    
 }
 
 - (void)orientationChanged:(NSNotification *)notification
@@ -690,7 +675,7 @@ static uint iOSOrientationToGfx(UIDeviceOrientation orientation)
 {
 	using namespace Base;
 	logMsg("became active");
-	if(!Base::openglViewIsInit)
+	if(!openglViewIsInit)
 		[glView createFramebuffer];
 	Base::appState = APP_RUNNING;
 	if(Base::displayLink)
@@ -918,6 +903,11 @@ const char *documentsPath()
 	return docPath;
 }
 
+const char* applicationPath()
+{
+    return [[[NSBundle mainBundle]bundlePath]UTF8String];
+}
+
 const char *storagePath()
 {
 	#ifdef CONFIG_BASE_IOS_JB
@@ -1022,4 +1012,17 @@ int main(int argc, char *argv[])
 	UIApplicationMain(argc, argv, nil, @"MainApp");
 	//[pool release];
 	return 0;
+}
+
+
+void showGameList()
+{
+    MainApp* app = (MainApp*)[UIApplication sharedApplication].delegate;
+    [app showGameList];
+}
+
+void showSettingPopup()
+{
+    MainApp* app = (MainApp*)[UIApplication sharedApplication].delegate;
+    [app showSettingPopup];
 }

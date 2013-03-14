@@ -4,15 +4,10 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>emu_all copy.xcscheme</key>
+		<key>emu_gba_srw.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>4</integer>
-		</dict>
-		<key>emu_all.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

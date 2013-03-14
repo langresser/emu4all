@@ -306,11 +306,11 @@ void EmuSystem::closeSystem()
 	detectedRtcGame = 0;
 }
 
-int EmuSystem::loadGame(const char *path)
+int EmuSystem::loadGame(const char *path, bool searchInDocument)
 {
 	closeGame();
 	emuView.initImage(0, 240, 160);
-	setupGamePaths(path);
+	setupGamePaths(path, searchInDocument);
 	systemSaveUpdateCounter = SYSTEM_SAVE_NOT_UPDATED;
 	soundInit();
 	int size = CPULoadRom(gGba, fullGamePath);

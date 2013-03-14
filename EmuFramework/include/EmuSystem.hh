@@ -67,7 +67,7 @@ class EmuSystem
 	static void initOptions();
 	static void writeConfig(Io *io);
 	static bool readConfig(Io *io, uint key, uint readSize);
-	static int loadGame(const char *path);
+	static int loadGame(const char *path, bool searchInDocument = true);
 	typedef Delegate<void (uint result, const Input::Event &e)> LoadGameCompleteDelegate;
 	static LoadGameCompleteDelegate loadGameCompleteDel;
 	static LoadGameCompleteDelegate &loadGameCompleteDelegate() { return loadGameCompleteDel; }
@@ -85,7 +85,7 @@ class EmuSystem
 	static void stopSound();
 	static void startSound();
 	static int setupFrameSkip(uint optionVal, Gfx::FrameTimeBase frameTime);
-	static void setupGamePaths(const char *filePath);
+	static void setupGamePaths(const char *filePath, bool searchInDocument);
 
 	static void clearGamePaths()
 	{

@@ -32,7 +32,7 @@ static GC orientationToGC(uint o)
 #ifdef CONFIG_GFX_SOFT_ORIENTATION
 uint rotateView = VIEW_ROTATE_0;
 static uint validOrientations = VIEW_ROTATE_0 | VIEW_ROTATE_90 | VIEW_ROTATE_180 | VIEW_ROTATE_270;
-uint preferedOrientation = VIEW_ROTATE_0;
+uint preferedOrientation = VIEW_ROTATE_90;
 
 uint setValidOrientations(uint oMask, bool manageAutoOrientation)
 {

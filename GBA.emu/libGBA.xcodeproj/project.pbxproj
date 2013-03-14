@@ -65,7 +65,6 @@
 		8517F02916F1F76D0079D232 /* Mode3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8517EFE416F1F76D0079D232 /* Mode3.cpp */; };
 		8517F02A16F1F76D0079D232 /* Mode4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8517EFE516F1F76D0079D232 /* Mode4.cpp */; };
 		8517F02B16F1F76D0079D232 /* Mode5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8517EFE616F1F76D0079D232 /* Mode5.cpp */; };
-		8517F02C16F1F76D0079D232 /* remote.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8517EFE716F1F76D0079D232 /* remote.cpp */; };
 		8517F02D16F1F76D0079D232 /* RTC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8517EFE816F1F76D0079D232 /* RTC.cpp */; };
 		8517F02E16F1F76D0079D232 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8517EFEA16F1F76D0079D232 /* Sound.cpp */; };
 		8517F02F16F1F76D0079D232 /* Sram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8517EFEC16F1F76D0079D232 /* Sram.cpp */; };
@@ -210,7 +209,6 @@
 		8517EFE416F1F76D0079D232 /* Mode3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mode3.cpp; sourceTree = "<group>"; };
 		8517EFE516F1F76D0079D232 /* Mode4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mode4.cpp; sourceTree = "<group>"; };
 		8517EFE616F1F76D0079D232 /* Mode5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mode5.cpp; sourceTree = "<group>"; };
-		8517EFE716F1F76D0079D232 /* remote.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = remote.cpp; sourceTree = "<group>"; };
 		8517EFE816F1F76D0079D232 /* RTC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RTC.cpp; sourceTree = "<group>"; };
 		8517EFE916F1F76D0079D232 /* RTC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTC.h; sourceTree = "<group>"; };
 		8517EFEA16F1F76D0079D232 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
@@ -433,7 +431,6 @@
 				8517EFE416F1F76D0079D232 /* Mode3.cpp */,
 				8517EFE516F1F76D0079D232 /* Mode4.cpp */,
 				8517EFE616F1F76D0079D232 /* Mode5.cpp */,
-				8517EFE716F1F76D0079D232 /* remote.cpp */,
 				8517EFE816F1F76D0079D232 /* RTC.cpp */,
 				8517EFE916F1F76D0079D232 /* RTC.h */,
 				8517EFEA16F1F76D0079D232 /* Sound.cpp */,
@@ -595,7 +592,6 @@
 				8517F02916F1F76D0079D232 /* Mode3.cpp in Sources */,
 				8517F02A16F1F76D0079D232 /* Mode4.cpp in Sources */,
 				8517F02B16F1F76D0079D232 /* Mode5.cpp in Sources */,
-				8517F02C16F1F76D0079D232 /* remote.cpp in Sources */,
 				8517F02D16F1F76D0079D232 /* RTC.cpp in Sources */,
 				8517F02E16F1F76D0079D232 /* Sound.cpp in Sources */,
 				8517F02F16F1F76D0079D232 /* Sram.cpp in Sources */,

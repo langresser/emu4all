@@ -11,7 +11,7 @@
 #import "UIDevice+Util.h"
 #import "UIGlossyButton.h"
 #import "UMFeedback.h"
-#import "iphone.h"
+#import "MainApp.h"
 
 #include "platform_util.h"
 #include "EmuSystem.hh"
