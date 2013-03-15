@@ -192,6 +192,12 @@ static bool isGBAExtension(const char *name)
 
 static int gbaFsFilter(const char *name, int type)
 {
+    if (strcmp(name, "DJDownloadCache") == 0
+        || strcmp(name, "DJIpaDownloaded") == 0
+        || strcmp(name, "DJIpaDownloading") == 0
+        || strcmp(name, "DJTemp") == 0) {
+        return false;
+    }
 	return type == Fs::TYPE_DIR || isGBAExtension(name);
 }
 

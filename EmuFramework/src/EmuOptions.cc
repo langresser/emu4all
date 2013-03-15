@@ -72,10 +72,6 @@ Byte4s1Option optionGameOrientation(CFGKEY_GAME_ORIENTATION,
 		(Config::envIsAndroid || Config::envIsIOS || Config::envIsWebOS3) ? Gfx::VIEW_ROTATE_AUTO : Config::envIsWebOS ? Gfx::VIEW_ROTATE_90 : Gfx::VIEW_ROTATE_0,
 		Config::envIsPS3, optionOrientationIsValid);
 
-Byte4s1Option optionMenuOrientation(CFGKEY_MENU_ORIENTATION,
-		(Config::envIsAndroid || Config::envIsIOS || Config::envIsWebOS3) ? Gfx::VIEW_ROTATE_AUTO : Gfx::VIEW_ROTATE_0,
-		Config::envIsPS3, optionOrientationIsValid);
-
 Byte1Option optionTouchCtrl(CFGKEY_TOUCH_CONTROL_DISPLAY,
 		(Config::envIsLinux || Config::envIsPS3) ? 0 : 2,
 		Config::envIsPS3, optionIsValidWithMax<2>);

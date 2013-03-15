@@ -27,5 +27,8 @@
 
 -(void)showGameList;
 -(void)showSettingPopup;
+-(void)showFeedBack;
+-(void)showWeibo;
+-(void)showOfferWall;
 @end
 

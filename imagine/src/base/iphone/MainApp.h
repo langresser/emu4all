@@ -25,8 +25,13 @@
 
 -(void)showSettingPopup;
 -(void)showGameList;
-
+-(void)showFeedBack;;
+-(void)showWeibo;
+-(void)showOfferWall;
 @end
 
 void showSettingPopup();
 void showGameList();
+void showFeedBack();
+void showWeibo();
+void showOfferWall();

@@ -421,20 +421,6 @@ void OptionView::gameOrientationInit()
 	gameOrientation.onValue().bind<&gameOrientationSet>();
 }
 
-void menuOrientationSet(MultiChoiceMenuItem &, int val)
-{
-	optionMenuOrientation.val = convertOrientationMenuValueToOption(val);
-	if(!Gfx::setValidOrientations(optionMenuOrientation, 1))
-		Gfx::onViewChange(nullptr);
-	logMsg("set menu orientation: %s", Gfx::orientationName(int(optionMenuOrientation)));
-}
-
-void OptionView::menuOrientationInit()
-{
-	orientationInit(menuOrientation, optionMenuOrientation);
-	menuOrientation.onValue().bind<&menuOrientationSet>();
-}
-
 void aspectRatioSet(MultiChoiceMenuItem &, int val)
 {
 	optionAspectRatio.val = val;
@@ -495,6 +481,7 @@ void OptionView::zoomInit()
 	zoom.onValue().bind<&zoomSet>();
 }
 
+#if 0
 void dpiSet(MultiChoiceMenuItem &, int val)
 {
 	switch(val)
@@ -548,6 +535,7 @@ void OptionView::imgFilterInit()
 	imgFilter.init(str, optionImgFilter, sizeofArray(str));
 	imgFilter.onValue().bind<&imgFilterSet>();
 }
+#endif
 
 void overlayEffectSet(MultiChoiceMenuItem &, int val)
 {
@@ -776,7 +764,6 @@ void OptionView::loadVideoItems(MenuItem *item[], uint &items)
 	if(!optionFrameSkip.isConst) { frameSkipInit(); item[items++] = &frameSkip; }
 	if(!optionGameOrientation.isConst) { gameOrientationInit(); item[items++] = &gameOrientation; }
 	aspectRatioInit(); item[items++] = &aspectRatio;
-	imgFilterInit(); item[items++] = &imgFilter;
 	overlayEffectInit(); item[items++] = &overlayEffect;
 	overlayEffectLevelInit(); item[items++] = &overlayEffectLevel;
 	zoomInit(); item[items++] = &zoom;
@@ -870,7 +857,6 @@ void OptionView::loadSystemItems(MenuItem *item[], uint &items)
 void OptionView::loadGUIItems(MenuItem *item[], uint &items)
 {
 	name_ = "GUI Options";
-	if(!optionMenuOrientation.isConst) { menuOrientationInit(); item[items++] = &menuOrientation; }
 	if(!optionPauseUnfocused.isConst)
 	{
 		pauseUnfocused.init(optionPauseUnfocused); item[items++] = &pauseUnfocused;
@@ -898,7 +884,10 @@ void OptionView::loadGUIItems(MenuItem *item[], uint &items)
 		largeFonts.init(optionLargeFonts); item[items++] = &largeFonts;
 		largeFonts.selectDelegate().bind<&largeFontsHandler>();
 	}
+    
+#if 0
 	if(!optionDPI.isConst) { dpiInit(); item[items++] = &dpi; }
+#endif
 	#ifndef CONFIG_ENV_WEBOS
 	altGamepadConfirm.init(Input::swappedGamepadConfirm); item[items++] = &altGamepadConfirm;
 	altGamepadConfirm.selectDelegate().bind<&altGamepadConfirmHandler>();

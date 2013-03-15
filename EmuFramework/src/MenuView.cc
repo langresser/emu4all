@@ -49,6 +49,24 @@ void MenuView::loadGameHandler(TextMenuItem &, const Input::Event &e)
 	viewStack.pushAndShow(&fPicker);
 }
 
+void MenuView::loadGameListHandler(TextMenuItem &, const Input::Event &e)
+{
+    extern void showGameList();
+    showGameList();
+}
+
+void MenuView::feedBackHandler(TextMenuItem &, const Input::Event &e)
+{
+    extern void showFeedBack();
+    showFeedBack();
+}
+
+void MenuView::weiboHandler(TextMenuItem &, const Input::Event &e)
+{
+    extern void showWeibo();
+    showWeibo();
+}
+
 void confirmResetAlert(const Input::Event &e)
 {
 	EmuSystem::resetGame();
@@ -82,7 +100,7 @@ void MenuView::loadStateHandler(TextMenuItem &item, const Input::Event &e)
 {
 	if(item.active && EmuSystem::gameIsRunning())
 	{
-		ynAlertView.init("Really Load State?", !e.isPointer());
+		ynAlertView.init("是否加载存档?", !e.isPointer());
 		ynAlertView.onYes().bind<&confirmLoadStateAlert>();
 		ynAlertView.placeRect(Gfx::viewportRect());
 		View::modalView = &ynAlertView;
@@ -122,7 +140,7 @@ void MenuView::saveStateHandler(TextMenuItem &, const Input::Event &e)
 		}
 		else
 		{
-			ynAlertView.init("Really Overwrite State?", !e.isPointer());
+			ynAlertView.init("是否覆盖存档?", !e.isPointer());
 			ynAlertView.onYes().bind<&confirmSaveStateAlert>();
 			ynAlertView.placeRect(Gfx::viewportRect());
 			View::modalView = &ynAlertView;
@@ -153,12 +171,15 @@ void MenuView::optionsHandler(TextMenuItem &, const Input::Event &e)
 	viewStack.pushAndShow(&oMenu);
 }
 
+#if kOldMenu
 void MenuView::inputManagerHandler(TextMenuItem &, const Input::Event &e)
 {
 	imMenu.init(!e.isPointer());
 	viewStack.pushAndShow(&imMenu);
 }
+#endif
 
+#if kOldMenu
 void MenuView::benchmarkHandler(TextMenuItem &, const Input::Event &e)
 {
 	fPicker.initForBenchmark(!e.isPointer());
@@ -166,6 +187,7 @@ void MenuView::benchmarkHandler(TextMenuItem &, const Input::Event &e)
 	View::modalView = &fPicker;
 	Base::displayNeedsUpdate();
 }
+#endif
 
 #ifdef CONFIG_BLUETOOTH
 
@@ -287,22 +309,26 @@ void MenuView::bluetoothDisconnectHandler(TextMenuItem &item, const Input::Event
 
 #endif
 
+#if kOldMenu
 void MenuView::aboutHandler(TextMenuItem &, const Input::Event &e)
 {
 	credits.init();
 	viewStack.pushAndShow(&credits);
 }
+#endif
 
 void MenuView::exitAppHandler(TextMenuItem &, const Input::Event &e)
 {
 	Base::exit();
 }
 
+#if kOldMenu
 void MenuView::screenshotHandler(TextMenuItem &item, const Input::Event &e)
 {
 	if(EmuSystem::gameIsRunning())
 		takeGameScreenshot();
 }
+#endif
 
 void MenuView::onShow()
 {
@@ -311,17 +337,22 @@ void MenuView::onShow()
 	reset.active = EmuSystem::gameIsRunning();
 	saveState.active = EmuSystem::gameIsRunning();
 	loadState.active = EmuSystem::gameIsRunning() && EmuSystem::stateExists(EmuSystem::saveStateSlot);
-	stateSlotText[12] = saveSlotChar(EmuSystem::saveStateSlot);
+    
+    snprintf(stateSlotText, sizeof(stateSlotText) - 1, "游戏存档 (%c)", saveSlotChar(EmuSystem::saveStateSlot));
 	stateSlot.compile();
+    
+#if kOldMenu
 	screenshot.active = EmuSystem::gameIsRunning();
 	#ifdef CONFIG_BLUETOOTH
 		bluetoothDisconnect.active = Bluetooth::devsConnected();
 	#endif
+#endif
 }
 
 void MenuView::loadFileBrowserItems(MenuItem *item[], uint &items)
 {
-	loadGame.init(); item[items++] = &loadGame;
+    loadGameList.init(); item[items++] = &loadGameList;
+//	loadGame.init(); item[items++] = &loadGame;
 	recentGames.init(); item[items++] = &recentGames;
 }
 
@@ -331,11 +362,17 @@ void MenuView::loadStandardItems(MenuItem *item[], uint &items)
 	loadState.init(); item[items++] = &loadState;
 	saveState.init(); item[items++] = &saveState;
 
-	stateSlotText[12] = saveSlotChar(EmuSystem::saveStateSlot);
+    snprintf(stateSlotText, sizeof(stateSlotText) - 1, "游戏存档 (%c)", saveSlotChar(EmuSystem::saveStateSlot));
 	stateSlot.init(stateSlotText); item[items++] = &stateSlot;
 
 	options.init(); item[items++] = &options;
+    
+    feedBack.init(); item[items++] = &feedBack;
+    weibo.init(); item[items++] = &weibo;
+    
+#if kOldMenu
 	inputManager.init(); item[items++] = &inputManager;
+    
 	#ifdef CONFIG_BLUETOOTH
 	scanWiimotes.init(); item[items++] = &scanWiimotes;
 	bluetoothDisconnect.init(); item[items++] = &bluetoothDisconnect;
@@ -343,6 +380,7 @@ void MenuView::loadStandardItems(MenuItem *item[], uint &items)
 	benchmark.init(); item[items++] = &benchmark;
 	screenshot.init(); item[items++] = &screenshot;
 	about.init(); item[items++] = &about;
+#endif
 	exitApp.init(); item[items++] = &exitApp;
 }
 

@@ -120,6 +120,23 @@ static uint iOSInterfaceOrientationToGfx(UIInterfaceOrientation orientation)
     return UIInterfaceOrientationMaskAll;
 }
 
+
+-(void)showFeedBack
+{
+    [UMFeedback showFeedback:self withAppkey:kUMengAppKey];
+}
+
+-(void)showWeibo
+{
+    NSURL* urlx = [NSURL URLWithString:[NSString stringWithUTF8String:"http://weibo.com/u/2605635545"]];
+    [[UIApplication sharedApplication]openURL:urlx];
+}
+
+-(void)showOfferWall
+{
+//    [[DianJinOfferPlatform defaultPlatform]showOfferWall: self delegate:self];
+}
+
 -(void)showSettingPopup
 {
     if (settingVC == nil) {

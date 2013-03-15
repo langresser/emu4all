@@ -195,6 +195,8 @@ void EmuSystem::setupGamePaths(const char *filePath, bool searchInDocument)
         snprintf(fullGamePath, sizeof(fullGamePath), "%s/%s", Base::applicationPath(), filePath);
     }
     
+    snprintf(gamePath, sizeof(gamePath), "%s", Base::documentsPath());
+    
 	{
 		FsSys::cPath baseNameTemp;
 		string_copy(baseNameTemp, filePath);

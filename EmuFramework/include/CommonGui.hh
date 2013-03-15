@@ -400,12 +400,13 @@ void restoreMenuFromGame()
 	if(!optionFrameSkip.isConst)
 		Gfx::setVideoInterval(1);
 	//logMsg("setting valid orientations");
-	if(!Gfx::setValidOrientations(optionMenuOrientation, 1))
+	if(!Gfx::setValidOrientations(optionGameOrientation, 1))
 		Gfx::onViewChange();
 	Input::setKeyRepeat(1);
 	Input::setHandleVolumeKeys(0);
-	if(!optionRememberLastMenu)
-		viewStack.popToRoot();
+//	if(!optionRememberLastMenu)
+//		viewStack.popToRoot();
+    viewStack.popToRoot();
 	Base::displayNeedsUpdate();
 	viewStack.show();
 }
@@ -1047,7 +1048,7 @@ static void mainInitWindowCommon(const Gfx::LGradientStopDesc (&navViewGrad)[NAV
 
 	//logMsg("setting menu orientation");
 	// set orientation last since it can trigger onViewChange()
-	Gfx::setValidOrientations(optionMenuOrientation, 1);
+	Gfx::setValidOrientations(optionGameOrientation, 1);
 	Base::setAcceptDnd(1);
 
 	#if defined CONFIG_BASE_ANDROID && CONFIG_ENV_ANDROID_MINSDK >= 9

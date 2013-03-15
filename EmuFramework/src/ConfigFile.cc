@@ -218,7 +218,7 @@ static bool readConfig2(Io *io)
 			}
 			bcase CFGKEY_FONT_Y_PIXELS: logMsg("reading large font option"); optionLargeFonts.readFromIO(io, size);
 			bcase CFGKEY_GAME_ORIENTATION: optionGameOrientation.readFromIO(io, size);
-			bcase CFGKEY_MENU_ORIENTATION: optionMenuOrientation.readFromIO(io, size);
+			bcase CFGKEY_MENU_ORIENTATION: optionGameOrientation.readFromIO(io, size);
 			bcase CFGKEY_GAME_IMG_FILTER: optionImgFilter.readFromIO(io, size);
 			bcase CFGKEY_GAME_ASPECT_RATIO: optionAspectRatio.readFromIO(io, size);
 			bcase CFGKEY_IMAGE_ZOOM: optionImageZoom.readFromIO(io, size);
@@ -430,7 +430,7 @@ static OptionBase *cfgFileOption[] =
 	&optionLargeFonts,
 	&optionPauseUnfocused,
 	&optionGameOrientation,
-	&optionMenuOrientation,
+	&optionGameOrientation,
 	&optionTouchCtrl,
 	&optionTouchCtrlAlpha,
 	&optionTouchCtrlSize,

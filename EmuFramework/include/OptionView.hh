@@ -43,7 +43,7 @@ void chdirFromFilePath(const char *path);
 class OptionView : public BaseMenuView
 {
 protected:
-	BoolMenuItem snd {"Sound", BoolMenuItem::SelectDelegate::create<&soundHandler>()};
+	BoolMenuItem snd {"声音", BoolMenuItem::SelectDelegate::create<&soundHandler>()};
 	static void soundHandler(BoolMenuItem &item, const Input::Event &e);
 
 	#ifdef CONFIG_AUDIO_OPENSL_ES
@@ -67,7 +67,7 @@ protected:
 
 	TextMenuItem touchCtrlConfig {"On-screen Config"};
 
-	MultiChoiceSelectMenuItem autoSaveState {"Auto-save State"};
+	MultiChoiceSelectMenuItem autoSaveState {"自动存档"};
 
 	void autoSaveStateInit();
 
@@ -75,11 +75,11 @@ protected:
 
 	void statusBarInit();
 
-	MultiChoiceSelectMenuItem frameSkip {"Frame Skip"};
+	MultiChoiceSelectMenuItem frameSkip {"跳帧"};
 
 	void frameSkipInit();
 
-	MultiChoiceSelectMenuItem audioRate {"Sound Rate"};
+	MultiChoiceSelectMenuItem audioRate {"声音频率"};
 
 	void audioRateInit();
 
@@ -97,7 +97,7 @@ protected:
 
 	BoolMenuItem pauseUnfocused {Config::envIsPS3 ? "Pause in XMB" : "Pause if unfocused"};
 
-	BoolMenuItem largeFonts {"Large Fonts"};
+	BoolMenuItem largeFonts {"大号字体"};
 
 	BoolMenuItem notificationIcon {"Suspended App Icon"};
 
@@ -141,15 +141,11 @@ protected:
 	BoolMenuItem btScanCache {"Bluetooth Scan Cache"};
 	#endif
 
-	MultiChoiceSelectMenuItem gameOrientation {"Orientation"};
+	MultiChoiceSelectMenuItem gameOrientation {"屏幕方向"};
 
 	void gameOrientationInit();
 
-	MultiChoiceSelectMenuItem menuOrientation {"Orientation"};
-
-	void menuOrientationInit();
-
-	MultiChoiceSelectMenuItem aspectRatio {"Aspect Ratio"};
+	MultiChoiceSelectMenuItem aspectRatio {"屏幕比例"};
 
 	void aspectRatioInit();
 
@@ -159,23 +155,26 @@ protected:
 	void soundBuffersInit();
 #endif
 
-	MultiChoiceSelectMenuItem zoom {"Zoom"};
+	MultiChoiceSelectMenuItem zoom {"屏幕缩放"};
 
 	void zoomInit();
 
+#if kOldMenu
 	MultiChoiceSelectMenuItem dpi {"DPI Override"};
 
 	void dpiInit();
 
-	MultiChoiceSelectMenuItem imgFilter {"Image Filter"};
+
+	MultiChoiceSelectMenuItem imgFilter {"画面过滤"};
 
 	void imgFilterInit();
+#endif
 
-	MultiChoiceSelectMenuItem overlayEffect {"Overlay Effect"};
+	MultiChoiceSelectMenuItem overlayEffect {"画面效果"};
 
 	void overlayEffectInit();
 
-	MultiChoiceSelectMenuItem overlayEffectLevel {"Overlay Effect Level"};
+	MultiChoiceSelectMenuItem overlayEffectLevel {"画面效果等级"};
 
 	void overlayEffectLevelInit();
 

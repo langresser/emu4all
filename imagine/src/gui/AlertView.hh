@@ -67,8 +67,8 @@ public:
 
 	void init(const char *label, bool highlightFirst, const char *choice1 = nullptr, const char *choice2 = nullptr)
 	{
-		yes.init(choice1 ? choice1 : "Yes"); menuItem[0] = &yes;
-		no.init(choice2 ? choice2 : "No"); menuItem[1] = &no;
+		yes.init(choice1 ? choice1 : "确定"); menuItem[0] = &yes;
+		no.init(choice2 ? choice2 : "取消"); menuItem[1] = &no;
 		assert(!onYesD.hasCallback());
 		assert(!onNoD.hasCallback());
 		AlertView::init(label, menuItem, highlightFirst);

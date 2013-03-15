@@ -630,6 +630,21 @@ static uint iOSOrientationToGfx(UIDeviceOrientation orientation)
     [emuGameVC showSettingPopup];
 }
 
+-(void)showFeedBack
+{
+    [emuGameVC showFeedBack];
+}
+
+-(void)showOfferWall
+{
+    [emuGameVC showOfferWall];
+}
+
+-(void)showWeibo
+{
+    [emuGameVC showWeibo];
+}
+
 -(void)onRecNewMsg:(NSNotification*)notification
 {
     NSArray * newReplies = [notification.userInfo objectForKey:@"newReplies"];
@@ -1025,4 +1040,22 @@ void showSettingPopup()
 {
     MainApp* app = (MainApp*)[UIApplication sharedApplication].delegate;
     [app showSettingPopup];
+}
+
+void showFeedBack()
+{
+    MainApp* app = (MainApp*)[UIApplication sharedApplication].delegate;
+    [app showFeedBack];
+}
+
+void showWeibo()
+{
+    MainApp* app = (MainApp*)[UIApplication sharedApplication].delegate;
+    [app showWeibo];
+}
+
+void showOfferWall()
+{
+    MainApp* app = (MainApp*)[UIApplication sharedApplication].delegate;
+    [app showOfferWall];
 }
