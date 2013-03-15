@@ -261,13 +261,6 @@
 			remoteGlobalIDString = 3B22122D15DFAFE200219D4B;
 			remoteInfo = libpng;
 		};
-		8513C2B516F1B05A0085F42E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 852A78E616F19A5B001BEA56 /* libMD.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 852A78D416F19A48001BEA56;
-			remoteInfo = libMD;
-		};
 		8517F5FD16F205260079D232 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 852A77EF16F18D06001BEA56 /* libGBA.xcodeproj */;
@@ -1905,7 +1898,6 @@
 			);
 			dependencies = (
 				8517F5FE16F205260079D232 /* PBXTargetDependency */,
-				8513C2B616F1B05A0085F42E /* PBXTargetDependency */,
 				853BDE1816F0539400F4A001 /* PBXTargetDependency */,
 				853BDE1A16F0539400F4A001 /* PBXTargetDependency */,
 				853BDE1C16F0539400F4A001 /* PBXTargetDependency */,
@@ -2232,11 +2224,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8513C2B616F1B05A0085F42E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = libMD;
-			targetProxy = 8513C2B516F1B05A0085F42E /* PBXContainerItemProxy */;
-		};
 		8517F5FE16F205260079D232 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libGBA;
@@ -2321,6 +2308,7 @@
 					"\"$(SRCROOT)/libs/DianJinFramework\"/**",
 					"\"$(SRCROOT)/libs/DianJinFramework\"",
 				);
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Emu4all/Emu4all-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (

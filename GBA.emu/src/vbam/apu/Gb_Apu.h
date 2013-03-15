@@ -98,7 +98,7 @@ public:
 	blargg_err_t load_state( gb_apu_state_t const& in );
 
 public:
-	constexpr Gb_Apu() { }
+	Gb_Apu() { }
 
 	// Use set_output() in place of these
 	BLARGG_DEPRECATED void output    (        Blip_Buffer* c                                 ) { set_output( c, c, c    ); }
