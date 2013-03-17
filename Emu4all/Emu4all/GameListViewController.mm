@@ -135,6 +135,8 @@ int g_currentMB = 0;
     
     [self.navigationController setNavigationBarHidden:YES];
     
+    [MobClick event:@"startapp" label:[[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleName"]];
+    
     NSError* error = nil;
     NSString* filePath = [[NSBundle mainBundle]pathForResource:@"romlist" ofType:@"json"];
     NSString* jsonString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
@@ -218,6 +220,7 @@ int g_currentMB = 0;
     CGRect rectRate = CGRectMake(220, 5, 85, 15);
     CGRect rectLock = CGRectMake(280, 5, 16, 16);
     CGRect rectNew = CGRectMake(260, 55, 36, 16);
+    CGRect rectGL = CGRectMake(240, 50, 36, 20);
     
     float fontSize = 14;
     
@@ -229,6 +232,7 @@ int g_currentMB = 0;
             rectRate = CGRectMake(830, 5, 90, 30);
             rectLock = CGRectMake(800, 5, 28, 28);
             rectNew = CGRectMake(880, 80, 36, 16);
+            rectGL = CGRectMake(700, 5, 90, 30);
         } else {
             rectImage = CGRectMake(2, 10, 100, 100);
             rectName = CGRectMake(120, 3, 220, 25);
@@ -236,6 +240,7 @@ int g_currentMB = 0;
             rectRate = CGRectMake(560, 5, 90, 30);
             rectLock = CGRectMake(640, 5, 28, 28);
             rectNew = CGRectMake(640, 80, 36, 16);
+            rectGL = CGRectMake(500, 5, 90, 30);
         }
         fontSize = 20;
     } else {
@@ -246,6 +251,7 @@ int g_currentMB = 0;
             rectRate = CGRectMake(360, 5, 85, 15);
             rectLock = CGRectMake(440, 5, 16, 16);
             rectNew = CGRectMake(410, 55, 36, 16);
+            rectGL = CGRectMake(300, 5, 36, 20);
         }
     }
     
@@ -284,6 +290,16 @@ int g_currentMB = 0;
         imgLock.frame = rectLock;
         imgLock.tag = 304;
         
+        UIGlossyButton* btnApp = [[UIGlossyButton alloc]initWithFrame:rectGL];
+        [btnApp setTitle:@"攻略" forState:UIControlStateNormal];
+        btnApp.titleLabel.font = [UIFont systemFontOfSize:15];
+        [btnApp addTarget:self action:@selector(onClickGongl:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [btnApp useWhiteLabel: YES];
+        btnApp.tintColor = [UIColor blueColor];
+        [btnApp setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeMake(0, 1) blurRadius: 4];
+        [btnApp setGradientType:kUIGlossyButtonGradientTypeLinearSmoothBrightToNormal];
+        
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         [cell.contentView addSubview:image];
         [cell.contentView addSubview:name];
@@ -291,6 +307,7 @@ int g_currentMB = 0;
         [cell.contentView addSubview:rate];
         [cell.contentView addSubview:imgLock];
         [cell.contentView addSubview:newBadge];
+        [cell.contentView addSubview:btnApp];
         cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.3];
         [cell.contentView setBackgroundColor:[UIColor clearColor]];
         
@@ -346,6 +363,16 @@ int g_currentMB = 0;
     bool isNew = [[dict objectForKey:@"new"]intValue] != 0;
     imgNew.hidden = !isNew;
     
+    for (id view in [cell.contentView subviews]) {
+        if ([view isKindOfClass:[UIGlossyButton class]]) {
+            UIGlossyButton* btnGL = (UIGlossyButton*)view;
+            btnGL.tag = indexPath.section * 1000 + indexPath.row;
+            NSString* gl = [dict objectForKey:@"gl"];
+            btnGL.hidden = (gl == nil);
+            break;
+        }
+    }
+    
     imgLock.hidden = [self isRomPurchase:indexPath notify:NO];
     
     return cell;
@@ -356,6 +383,28 @@ int g_currentMB = 0;
 {
     // Return NO if you do not want the specified item to be editable.
     return NO;
+}
+
+-(void)onClickGongl:(NSObject*)sender
+{
+    if (!textVC) {
+        textVC = [[TextViewController alloc]initWithNibName:nil bundle:nil];
+    }
+    
+    UIGlossyButton* btn = (UIGlossyButton*)sender;
+    int section = btn.tag / 1000;
+    int row = btn.tag % 1000;
+    NSDictionary* dict = [[[m_romData objectAtIndex:section]objectForKey:@"roms"]objectAtIndex:row];
+    
+    if (!dict) {
+        return;
+    }
+
+    NSString* glPath = [dict objectForKey:@"gl"];
+    NSString* fullPath = [[NSBundle mainBundle]pathForResource:glPath ofType:@""];
+    textVC.text = [NSString stringWithContentsOfFile:fullPath encoding:NSUTF8StringEncoding error:nil];
+    
+    [self presentViewController:textVC animated:YES completion:nil];
 }
 
 -(BOOL)isRomPurchase:(NSIndexPath*)indexPath notify:(BOOL)notify

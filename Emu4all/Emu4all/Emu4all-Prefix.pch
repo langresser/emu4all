@@ -30,7 +30,20 @@
 #define kUMengAppKey @"50a5517a52701506f8000017"
 #define kDianjinAppKey 12932
 #define kDianjinAppSecrect @"b46da6977eaf1861438e8cfd799a4fce"
-#define kMangoAppKey @"0a6d56311af3494f8f3ce4e423269ab2"
+#endif
+
+#ifdef GBA_DBZ
+#define JOYSTICK_GBA
+#define kUMengAppKey @"5144134956240b6e7000067e"
+#define kDianjinAppKey 25270
+#define kDianjinAppSecrect @"7eedcf3e21b3cbc85c2af22ea41a48a7"
+#endif
+
+#ifdef GBA_FB
+#define JOYSTICK_GBA
+#define kUMengAppKey @"5144134956240b6e7000067e"
+#define kDianjinAppKey 25269
+#define kDianjinAppSecrect @"5a6b7c8571b5e7772691ab7541d32aa9"
 #endif
 
 #define USE_LOGGER

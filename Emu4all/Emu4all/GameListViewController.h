@@ -12,6 +12,7 @@
 #import <DianJinOfferPlatform/DianJinBannerSubViewProperty.h>
 #import <DianJinOfferPlatform/DianJinTransitionParam.h>
 #import <DianJinOfferPlatform/DianJinOfferPlatformProtocol.h>
+#import "TextViewController.h"
 
 @interface GameListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, DianJinOfferBannerDelegate, UIAlertViewDelegate, DianJinOfferPlatformProtocol>
 {
@@ -24,6 +25,8 @@
     
     NSString* m_currentSelectRom;
     NSString* m_currentRomPath;
+    
+    TextViewController* textVC;
 }
 
 -(void)restartGame;
